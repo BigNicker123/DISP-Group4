@@ -15,7 +15,7 @@ This document outlines the tasks, assignments, and progress tracking for the DIS
 | 4      |               Operational business process model            |   Nick & Sam          |                |          | ⬜ Incomplete |
 | 5      |               Setup ReadMe file            |             |                |          | ⬜ Incomplete |
 | 6      |               Setup Project initial Plan            |      Nick & Sam       |       17/11/2025         |     0.5 hr     | ✅ Complete |
-| 7      |               Setup Camunda Repo and Link to Git           |      Nick       |                |          | 🔄 In Progress |
+| 7      |               Setup Camunda Repo and Link to Git           |      Nick       |    17/11/2025            |     0.5hr     | ✅ Complete |
 | 8      |                          |             |                |          | ⬜ Incomplete |
 | 9      |                          |             |                |          | ⬜ Incomplete |
 | 10      |                          |             |                |          | ⬜ Incomplete |
