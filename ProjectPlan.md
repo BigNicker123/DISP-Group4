@@ -33,3 +33,11 @@ This document outlines the tasks, assignments, and progress tracking for the DIS
 - Update **Assigned To** with team member names.
 - Fill in **Completed Date** and **Duration** once tasks are finished.
 - Add more rows as needed for additional tasks.
+
+---
+## Team Members
+- Nick
+- Sam
+- Wilson
+- Nathan
+- Reece
