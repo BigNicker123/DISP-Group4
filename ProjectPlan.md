@@ -9,7 +9,7 @@ This document outlines the tasks, assignments, and progress tracking for the DIS
 
 | Task # | Description                | Assigned To | Completed Date | Duration | Status    |
 |--------|---------------------------|-------------|----------------|----------|-----------|
-| 1      |        SD Model                   |    Nathan & Wilson         |                |          | 🔄 In Progress |
+| 1      |        SD Model                   |    Nathan & Wilson         |                |          | ✅ Complete |
 | 2      |         SR Model                  |   Raees & Wilson          |                |          | 🔄 In Progress |
 | 3      |             Strategic business process model             |             |                |          | ⬜ Incomplete |
 | 4      |               Operational business process model            |   Nick & Sam          |                |          | 🔄 In Progress |
