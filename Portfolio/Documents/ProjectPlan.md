@@ -11,8 +11,8 @@ This document outlines the tasks, assignments, and progress tracking for the DIS
 | ------ | ---------------------------------- | --------------- | -------------- | -------- | -------------- |
 | 1      | SD Model                           | Nathan & Wilson | 17/11/2025     | 13 hr    | ✅ Complete     |
 | 2      | SR Model                           | Raees, Nathan & Wilson  |                |          | 🔄 In Progress |
-| 3      | Strategic business process model   |                 |                |          | ⬜ Incomplete   |
-| 4      | Operational business process model | Nick & Sam      |                |          | 🔄 In Progress |
+| 3      | Strategic business process model   |  Nick & Sam               |                |          | ⬜ Incomplete   |
+| 4      | Operational business process model | Nick, Nathan & Wilson      |                |          | 🔄 In Progress |
 | 5      | Setup ReadMe file                  | Nathan                |                |          | ⬜ Incomplete   |
 | 6      | Setup Project initial Plan         | Nick & Sam      | 17/11/2025     | 0.5 hr   | ✅ Complete     |
 | 7      | Setup Camunda Repo and Link to Git | Nick            | 17/11/2025     | 0.5hr    | ✅ Complete     |
