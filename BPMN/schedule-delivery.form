@@ -1,0 +1,75 @@
+{
+  "executionPlatform": "Camunda Cloud",
+  "executionPlatformVersion": "8.8.0",
+  "exporter": {
+    "name": "Camunda Web Modeler",
+    "version": "e103445"
+  },
+  "schemaVersion": 16,
+  "id": "schedule-delivery",
+  "versionTag": "1",
+  "type": "default",
+  "components": [
+    {
+      "type": "textfield",
+      "id": "orderId",
+      "key": "orderId",
+      "label": "Order ID",
+      "validate": {
+        "required": true
+      },
+      "disabled": true
+    },
+    {
+      "type": "datetime",
+      "id": "scheduledDeliveryDate",
+      "key": "scheduledDeliveryDate",
+      "label": "Scheduled Delivery Date",
+      "subtype": "date",
+      "validate": {
+        "required": true
+      }
+    },
+    {
+      "type": "select",
+      "id": "assignedVan",
+      "key": "assignedVan",
+      "label": "Assign Delivery Van",
+      "validate": {
+        "required": true
+      },
+      "values": [
+        {
+          "label": "Van 1",
+          "value": "van-1"
+        },
+        {
+          "label": "Van 2",
+          "value": "van-2"
+        },
+        {
+          "label": "Van 3",
+          "value": "van-3"
+        }
+      ]
+    },
+    {
+      "type": "textfield",
+      "id": "driverName",
+      "key": "driverName",
+      "label": "Driver Name",
+      "validate": {
+        "required": true
+      }
+    },
+    {
+      "type": "textarea",
+      "id": "deliveryInstructions",
+      "key": "deliveryInstructions",
+      "label": "Delivery Instructions",
+      "validate": {
+        "required": false
+      }
+    }
+  ]
+}
