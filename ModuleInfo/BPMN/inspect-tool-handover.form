@@ -1,0 +1,109 @@
+{
+  "executionPlatform": "Camunda Cloud",
+  "executionPlatformVersion": "8.8.0",
+  "exporter": {
+    "name": "Camunda Web Modeler",
+    "version": "e103445"
+  },
+  "schemaVersion": 16,
+  "id": "inspect-tool-handover",
+  "versionTag": "1",
+  "type": "default",
+  "components": [
+    {
+      "type": "textfield",
+      "id": "toolId",
+      "key": "toolId",
+      "label": "Tool ID",
+      "validate": {
+        "required": true
+      }
+    },
+    {
+      "type": "textfield",
+      "id": "toolName",
+      "key": "toolName",
+      "label": "Tool Name",
+      "validate": {
+        "required": true
+      }
+    },
+    {
+      "type": "select",
+      "id": "toolCondition",
+      "key": "toolCondition",
+      "label": "Tool Condition on Return",
+      "validate": {
+        "required": true
+      },
+      "values": [
+        {
+          "label": "Good – No Issues",
+          "value": "good"
+        },
+        {
+          "label": "Minor Wear – Routine Service Needed",
+          "value": "minor-wear"
+        },
+        {
+          "label": "Damaged – Repair Required",
+          "value": "damaged"
+        },
+        {
+          "label": "Beyond Repair – Decommission",
+          "value": "decommission"
+        }
+      ]
+    },
+    {
+      "type": "textarea",
+      "id": "faultDescription",
+      "key": "faultDescription",
+      "label": "Fault Description (if applicable)",
+      "validate": {
+        "required": false
+      }
+    },
+    {
+      "type": "select",
+      "id": "serviceType",
+      "key": "serviceType",
+      "label": "Expected Service Type",
+      "validate": {
+        "required": true
+      },
+      "values": [
+        {
+          "label": "Routine Maintenance",
+          "value": "routine"
+        },
+        {
+          "label": "Repair",
+          "value": "repair"
+        },
+        {
+          "label": "Out-of-Service / Decommission",
+          "value": "out-of-service"
+        }
+      ]
+    },
+    {
+      "type": "checkbox",
+      "id": "handoverSigned",
+      "key": "handoverSigned",
+      "label": "Digital Handover Checklist Signed Off",
+      "validate": {
+        "required": true
+      }
+    },
+    {
+      "type": "textfield",
+      "id": "supervisorName",
+      "key": "supervisorName",
+      "label": "Warehouse Supervisor Name",
+      "validate": {
+        "required": true
+      }
+    }
+  ]
+}
