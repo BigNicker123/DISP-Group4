@@ -1,65 +1,72 @@
 {
-  "executionPlatform": "Camunda Cloud",
-  "executionPlatformVersion": "8.8.0",
-  "exporter": {
-    "name": "Camunda Web Modeler",
-    "version": "e103445"
-  },
-  "schemaVersion": 16,
-  "id": "collect-customer-information",
-  "versionTag": "1",
-  "type": "default",
   "components": [
     {
+      "label": "First Name",
       "type": "textfield",
       "id": "customerFirstName",
       "key": "customerFirstName",
-      "label": "First Name",
       "validate": {
-        "required": true
+        "required": true,
+        "minLength": "2"
       }
     },
     {
+      "label": "Last Name",
       "type": "textfield",
       "id": "customerLastName",
       "key": "customerLastName",
-      "label": "Last Name",
       "validate": {
-        "required": true
+        "required": true,
+        "minLength": "2"
       }
     },
     {
+      "label": "Email Address",
       "type": "textfield",
       "id": "customerEmail",
       "key": "customerEmail",
-      "label": "Email Address",
       "validate": {
-        "required": true
-      }
+        "required": true,
+        "validationType": "email"
+      },
+      "description": "Please enter a valid email address",
+      "properties": {}
     },
     {
+      "label": "Phone Number",
       "type": "textfield",
       "id": "customerPhone",
       "key": "customerPhone",
-      "label": "Phone Number",
       "validate": {
-        "required": true
-      }
+        "required": true,
+        "validationType": "phone"
+      },
+      "description": "Please enter a valid UK phone number"
     },
     {
+      "label": "Delivery Address",
       "type": "textarea",
       "id": "customerAddress",
       "key": "customerAddress",
-      "label": "Delivery Address",
       "validate": {
         "required": false
       }
     },
     {
+      "label": "Trade Card Member?",
       "type": "checkbox",
       "id": "isTradeCardMember",
-      "key": "isTradeCardMember",
-      "label": "Trade Card Member?"
+      "key": "isTradeCardMember"
     }
-  ]
+  ],
+  "executionPlatform": "Camunda Cloud",
+  "executionPlatformVersion": "8.8.0",
+  "exporter": {
+    "name": "Camunda Modeler",
+    "version": "5.44.0"
+  },
+  "schemaVersion": 19,
+  "id": "collect-customer-information",
+  "versionTag": "1",
+  "type": "default"
 }

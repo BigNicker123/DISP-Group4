@@ -45,10 +45,16 @@
       "id": "cardNumber",
       "key": "cardNumber",
       "validate": {
-        "required": false
+        "required": false,
+        "pattern": "\"^\\\\d{4}$\"",
+        "patternErrorMessage": "Enter the last 4 digits"
       },
       "layout": {
         "row": "Row_1lc6qli"
+      },
+      "description": "Enter the last 4 digits shown on your card",
+      "conditional": {
+        "hide": "=\"paymentMethod != \\\"card\\\"\""
       }
     },
     {
@@ -61,7 +67,11 @@
       },
       "layout": {
         "row": "Row_03ke60p"
-      }
+      },
+      "conditional": {
+        "hide": "={\"hide\": \"=paymentMethod != \\\"finance\\\"\"}"
+      },
+      "description": "Enter Trade Card Number"
     },
     {
       "text": "### Finance Payment Details\nInterest-free finance is available to Trade Card members only. Please confirm your repayment preference below.",
@@ -90,7 +100,10 @@
         "columns": null
       },
       "id": "Field_0d26qit",
-      "key": "repaymentPeriod"
+      "key": "repaymentPeriod",
+      "validate": {
+        "required": true
+      }
     },
     {
       "label": "I confirm I am applying for interest-free finance and agree to the repayment schedule",
@@ -100,14 +113,17 @@
         "columns": null
       },
       "id": "Field_1l0pduu",
-      "key": "financeConfirmed"
+      "key": "financeConfirmed",
+      "validate": {
+        "required": true
+      }
     }
   ],
   "executionPlatform": "Camunda Cloud",
   "executionPlatformVersion": "8.8.0",
   "exporter": {
     "name": "Camunda Modeler",
-    "version": "5.45.0"
+    "version": "5.44.0"
   },
   "schemaVersion": 19,
   "id": "get-payment-details",

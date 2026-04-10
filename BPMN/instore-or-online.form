@@ -18,7 +18,10 @@
         "columns": null
       },
       "id": "Field_01ce5e2",
-      "key": "inStoreOrOnline"
+      "key": "inStoreOrOnline",
+      "validate": {
+        "required": true
+      }
     }
   ],
   "type": "default",
@@ -27,7 +30,7 @@
   "executionPlatformVersion": "8.8.0",
   "exporter": {
     "name": "Camunda Modeler",
-    "version": "5.45.0"
+    "version": "5.44.0"
   },
   "schemaVersion": 19
 }

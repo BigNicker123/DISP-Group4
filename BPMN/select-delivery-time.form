@@ -1,33 +1,17 @@
 {
-  "executionPlatform": "Camunda Cloud",
-  "executionPlatformVersion": "8.8.0",
-  "exporter": {
-    "name": "Camunda Web Modeler",
-    "version": "e103445"
-  },
-  "schemaVersion": 16,
-  "id": "select-delivery-time",
-  "versionTag": "1",
-  "type": "default",
   "components": [
     {
+      "subtype": "date",
       "type": "datetime",
       "id": "preferredDeliveryDate",
       "key": "preferredDeliveryDate",
       "label": "Preferred Delivery Date",
-      "subtype": "date",
       "validate": {
         "required": true
       }
     },
     {
-      "type": "select",
-      "id": "preferredDeliverySlot",
-      "key": "preferredDeliverySlot",
       "label": "Preferred Delivery Time Slot",
-      "validate": {
-        "required": true
-      },
       "values": [
         {
           "label": "Morning (08:00 – 12:00)",
@@ -41,25 +25,42 @@
           "label": "Evening (17:00 – 20:00)",
           "value": "evening"
         }
-      ]
+      ],
+      "type": "select",
+      "id": "preferredDeliverySlot",
+      "key": "preferredDeliverySlot",
+      "validate": {
+        "required": true
+      }
     },
     {
+      "label": "Delivery Contact Name",
       "type": "textfield",
       "id": "deliveryContactName",
       "key": "deliveryContactName",
-      "label": "Delivery Contact Name",
       "validate": {
         "required": true
       }
     },
     {
+      "label": "Delivery Contact Phone",
       "type": "textfield",
       "id": "deliveryContactPhone",
       "key": "deliveryContactPhone",
-      "label": "Delivery Contact Phone",
       "validate": {
-        "required": true
+        "required": true,
+        "validationType": "phone"
       }
     }
-  ]
+  ],
+  "executionPlatform": "Camunda Cloud",
+  "executionPlatformVersion": "8.8.0",
+  "exporter": {
+    "name": "Camunda Modeler",
+    "version": "5.44.0"
+  },
+  "schemaVersion": 19,
+  "id": "select-delivery-time",
+  "versionTag": "1",
+  "type": "default"
 }
