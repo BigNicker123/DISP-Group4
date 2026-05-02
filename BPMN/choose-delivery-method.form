@@ -1,0 +1,51 @@
+{
+  "executionPlatform": "Camunda Cloud",
+  "executionPlatformVersion": "8.8.0",
+  "exporter": {
+    "name": "Camunda Web Modeler",
+    "version": "e103445"
+  },
+  "schemaVersion": 16,
+  "id": "choose-delivery-method",
+  "versionTag": "1",
+  "type": "default",
+  "components": [
+    {
+      "type": "radio",
+      "id": "deliveryMethod",
+      "key": "deliveryMethod",
+      "label": "Choose Delivery Method",
+      "validate": {
+        "required": true
+      },
+      "values": [
+        {
+          "label": "Home Delivery",
+          "value": "delivery"
+        },
+        {
+          "label": "Click and Collect",
+          "value": "click-and-collect"
+        }
+      ]
+    },
+    {
+      "type": "textarea",
+      "id": "deliveryAddress",
+      "key": "deliveryAddress",
+      "label": "Delivery Address (if Home Delivery)",
+      "validate": {
+        "required": false
+      }
+    },
+    {
+      "type": "textfield",
+      "id": "deliveryNotes",
+      "key": "deliveryNotes",
+      "label": "Delivery Instructions / Notes",
+      "validate": {
+        "required": false
+      }
+    }
+  ]
+}

@@ -1,0 +1,31 @@
+{
+  "components": [
+    {
+      "text": "## Hire Booking Confirmed",
+      "type": "text",
+      "layout": {
+        "row": "Row_0iqx8f4",
+        "columns": null
+      },
+      "id": "Field_1r3bw5c"
+    },
+    {
+      "text": "------------------------------------------------------------\n#### Booking Summary:\n\n##### Booking Details:\n   - Booking Reference: {{bookingReference}}\n   - Tools Selected: {{selectedTools}}\n   - Quantity: {{quantity}}\n\n##### Hire Period:\n   - Start Date: {{hireStartDate}}\n   - End Date: {{hireEndDate}}\n   - Duration: {{hireDuration}} day(s)\n\n##### Cost Breakdown:\n   - Hire Cost: £{{totalHireCost}}\n   - Deposit Required: £{{depositAmount}}\n   - Total Amount Due: £{{totalAmount}}",
+      "type": "text",
+      "layout": {
+        "row": "Row_16af713",
+        "columns": null
+      },
+      "id": "Field_1uyll5l"
+    }
+  ],
+  "type": "default",
+  "id": "hire-summary",
+  "executionPlatform": "Camunda Cloud",
+  "executionPlatformVersion": "8.8.0",
+  "exporter": {
+    "name": "Camunda Modeler",
+    "version": "5.45.0"
+  },
+  "schemaVersion": 19
+}

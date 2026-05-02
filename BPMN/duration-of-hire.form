@@ -1,0 +1,41 @@
+{
+  "components": [
+    {
+      "subtype": "date",
+      "type": "datetime",
+      "id": "hireStartDate",
+      "key": "hireStartDate",
+      "label": "Hire Start Date",
+      "validate": {
+        "required": true
+      },
+      "dateLabel": "Start Date",
+      "layout": {
+        "row": "Row_1iwodj3"
+      }
+    },
+    {
+      "subtype": "date",
+      "type": "datetime",
+      "id": "hireEndDate",
+      "key": "hireEndDate",
+      "label": "Hire End Date",
+      "validate": {
+        "required": true
+      },
+      "dateLabel": "End Date",
+      "layout": {
+        "row": "Row_09q7ix4"
+      }
+    }
+  ],
+  "executionPlatform": "Camunda Cloud",
+  "executionPlatformVersion": "8.8.0",
+  "exporter": {
+    "name": "Camunda Modeler",
+    "version": "5.45.0"
+  },
+  "schemaVersion": 19,
+  "id": "duration-of-hire",
+  "type": "default"
+}
