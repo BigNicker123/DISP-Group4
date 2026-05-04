@@ -554,9 +554,14 @@ public class ProcessNameWorker {
         Map<String, Object> vars = job.getVariablesAsMap();
         String customerProcessKey = getVar(vars, "customerProcessKey", "NOT_FOUND");
         Map<String, Object> payload = new HashMap<>();
+        List<Map<String, String>> availableTools = toolRepository.findAll().stream()
+                .filter(t -> t.getAvailableQuantity() > 0)
+                .map(t -> Map.of("label", t.getDisplayName(), "value", t.getName()))
+                .toList();
         payload.put("toolAvailable", false);
         payload.put("purchaseOrHire", vars.getOrDefault("purchaseOrHire", "hire"));
-        payload.put("selectedTools", vars.getOrDefault("selectedTools", ""));
+        payload.put("selectedTools", new java.util.ArrayList<>());
+        payload.put("availableTools", availableTools);
         payload.put("customerProcessKey", customerProcessKey);
         publishToStartEvent("toolUnavailable", payload);
         LOGGER.info("Tool unavailable notification sent — new Customer instance started | tools={}", vars.getOrDefault("selectedTools", ""));
