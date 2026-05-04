@@ -1,0 +1,87 @@
+{
+  "executionPlatform": "Camunda Cloud",
+  "executionPlatformVersion": "8.8.0",
+  "exporter": {
+    "name": "Camunda Web Modeler",
+    "version": "e103445"
+  },
+  "schemaVersion": 16,
+  "id": "fixpro-inspection",
+  "versionTag": "1",
+  "type": "default",
+  "components": [
+    {
+      "type": "text",
+      "id": "title_fixpro",
+      "text": "## FixPro Ltd — Tool Inspection Report\nComplete the initial inspection below. The service classification from ProBuild is pre-filled but can be updated based on your findings."
+    },
+    {
+      "type": "text",
+      "id": "section_probuild_assessment",
+      "text": "#### ProBuild Assessment (from handover)"
+    },
+    {
+      "type": "textfield",
+      "id": "toolConditionDisplay",
+      "key": "toolCondition",
+      "label": "Tool Condition on Arrival",
+      "disabled": true
+    },
+    {
+      "type": "textarea",
+      "id": "faultDescriptionDisplay",
+      "key": "faultDescription",
+      "label": "Reported Fault",
+      "disabled": true
+    },
+    {
+      "type": "text",
+      "id": "section_fixpro_assessment",
+      "text": "#### FixPro Technician Assessment"
+    },
+    {
+      "type": "select",
+      "id": "serviceType",
+      "key": "serviceType",
+      "label": "Service Classification",
+      "description": "Confirm or update the service type based on your inspection findings.",
+      "validate": {
+        "required": true
+      },
+      "values": [
+        {
+          "label": "Routine Maintenance",
+          "value": "routine"
+        },
+        {
+          "label": "Repair",
+          "value": "repair"
+        },
+        {
+          "label": "Out-of-Service / Decommission",
+          "value": "decommission"
+        }
+      ]
+    },
+    {
+      "type": "textarea",
+      "id": "technicianNotes",
+      "key": "technicianNotes",
+      "label": "Technician Inspection Notes",
+      "description": "Describe findings from the initial inspection.",
+      "validate": {
+        "required": true,
+        "minLength": 10
+      }
+    },
+    {
+      "type": "checkbox",
+      "id": "initialInspectionComplete",
+      "key": "initialInspectionComplete",
+      "label": "Initial inspection complete — ready to proceed to servicing",
+      "validate": {
+        "required": true
+      }
+    }
+  ]
+}

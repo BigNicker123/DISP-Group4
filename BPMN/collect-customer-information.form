@@ -93,11 +93,10 @@
       "label": "Trade Card Number",
       "description": "Enter your ProBuild Trade Card number (e.g. TC-1000000001)",
       "validate": {
-        "required": true,
         "pattern": "^TC-[0-9]{10}$"
       },
       "conditional": {
-        "hide": "=isTradeCardMember <> true"
+        "hide": "=not(isTradeCardMember = true)"
       }
     },
     {

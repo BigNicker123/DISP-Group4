@@ -26,15 +26,12 @@
     {
       "label": "Original Price (£)",
       "type": "number",
-      "id": "totalAmount",
-      "key": "totalAmount",
-      "validate": {
-        "required": true
-      },
+      "id": "originalAmount",
+      "key": "originalAmount",
       "disabled": true
     },
     {
-      "label": "Trade Card Discount Applied (£)",
+      "label": "Trade Card Discount (10%) (£)",
       "type": "number",
       "id": "discountAmount",
       "key": "discountAmount",
@@ -43,6 +40,16 @@
       "conditional": {
         "hide": "=discountAmount = 0 or discountAmount = null"
       }
+    },
+    {
+      "label": "Total Amount Due (£)",
+      "type": "number",
+      "id": "totalAmount",
+      "key": "totalAmount",
+      "validate": {
+        "required": true
+      },
+      "disabled": true
     },
     {
       "label": "Payment Method",

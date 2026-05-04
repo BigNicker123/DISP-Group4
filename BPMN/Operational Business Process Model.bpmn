@@ -822,10 +822,15 @@
         <bpmn:flowNodeRef>Event_0txxuyh_end</bpmn:flowNodeRef>
       </bpmn:lane>
     </bpmn:laneSet>
-    <bpmn:manualTask id="Activity_1vd36vp" name="Inspect tools and report status">
+    <bpmn:userTask id="Activity_1vd36vp" name="Inspect tools and report status">
+      <bpmn:extensionElements>
+        <zeebe:userTask />
+        <zeebe:formDefinition formId="fixpro-inspection" bindingType="deployment" />
+        <zeebe:assignmentDefinition assignee="demo" />
+      </bpmn:extensionElements>
       <bpmn:incoming>Flow_17r8hru</bpmn:incoming>
       <bpmn:outgoing>Flow_0yzbajo</bpmn:outgoing>
-    </bpmn:manualTask>
+    </bpmn:userTask>
     <bpmn:inclusiveGateway id="Gateway_1iajbmx" name="Service Classification">
       <bpmn:incoming>Flow_0yzbajo</bpmn:incoming>
       <bpmn:outgoing>Flow_05t8nue</bpmn:outgoing>

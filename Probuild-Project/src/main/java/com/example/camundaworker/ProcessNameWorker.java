@@ -171,6 +171,7 @@ public class ProcessNameWorker {
         }
 
         // Apply 10% Trade Card loyalty discount
+        double originalAmount = totalPrice;
         double discountAmount = 0.0;
         if (tradeCardValid) {
             discountAmount = round2(totalPrice * 0.10);
@@ -179,11 +180,12 @@ public class ProcessNameWorker {
             LOGGER.info("Trade card discount applied: -£{} | Discounted total: £{}", discountAmount, totalPrice);
         }
 
-        LOGGER.info("Price breakdown: {} | Total: £{} | tradeCardValid={}", priceBreakdown, totalPrice, tradeCardValid);
+        LOGGER.info("Price breakdown: {} | Original: £{} | Discount: £{} | Total: £{}", priceBreakdown, originalAmount, discountAmount, totalPrice);
 
         client.newCompleteCommand(job.getKey())
                 .variables(Map.of(
                         "totalAmount", totalPrice,
+                        "originalAmount", originalAmount,
                         "priceBreakdown", priceBreakdown.toString(),
                         "isTradeCardMember", isTradeCardMember,
                         "tradeCardValid", tradeCardValid,
@@ -241,14 +243,20 @@ public class ProcessNameWorker {
     public void sendPurchaseDetail(final ActivatedJob job, final JobClient client) {
         LOGGER.info("sendPurchaseDetail triggered");
         Map<String, Object> vars = job.getVariablesAsMap();
-        // preserve the original key if passed through from the hire confirmation flow
         String customerProcessKey = vars.containsKey("customerProcessKey")
                 ? getVar(vars, "customerProcessKey", String.valueOf(job.getProcessInstanceKey()))
                 : String.valueOf(job.getProcessInstanceKey());
+        // Generate a purchase order reference if not already set from a hire booking
+        String orderId = getVar(vars, "orderId", "");
+        if (orderId.isEmpty()) {
+            orderId = "PO-" + System.currentTimeMillis();
+            LOGGER.info("Purchase order reference generated: {}", orderId);
+        }
         vars.put("customerProcessKey", customerProcessKey);
+        vars.put("orderId", orderId);
         publishToStartEvent("purchaseDetail", vars);
         client.newCompleteCommand(job.getKey())
-                .variables(Map.of("customerProcessKey", customerProcessKey))
+                .variables(Map.of("customerProcessKey", customerProcessKey, "orderId", orderId))
                 .send().join();
     }
 
@@ -493,6 +501,7 @@ public class ProcessNameWorker {
                         "totalHireCost", totalHireCost,
                         "depositAmount", totalDeposit,
                         "totalAmount", totalAmount,
+                        "originalAmount", totalAmount,
                         "hireBreakdown", hireBreakdown.toString()
                 ))
                 .send().join();
@@ -524,6 +533,7 @@ public class ProcessNameWorker {
         payload.put("customerLastName", vars.getOrDefault("customerLastName", ""));
         payload.put("customerEmail", vars.getOrDefault("customerEmail", ""));
         payload.put("customerPhone", vars.getOrDefault("customerPhone", ""));
+        payload.put("orderId", bookingReference);
 
         publishToCatchEvent("hireConfirmed", customerProcessKey, payload);
         LOGGER.info("Booking confirmed sent | ref={} | customerProcessKey={}", bookingReference, customerProcessKey);
@@ -552,11 +562,17 @@ public class ProcessNameWorker {
         String deliveryStatus = getVar(vars, "deliveryStatus", "Delivered");
         String actualDeliveryDate = getVar(vars, "actualDeliveryDate", "");
         String purchaseOrHire = getVar(vars, "purchaseOrHire", "purchase");
-        publishToCatchEvent("packageDelivered", customerProcessKey, Map.of(
-                "deliveryStatus", deliveryStatus,
-                "actualDeliveryDate", actualDeliveryDate,
-                "purchaseOrHire", purchaseOrHire
-        ));
+        // Forward variables needed by the return flow in the new Customer process instance
+        Map<String, Object> payload = new HashMap<>();
+        payload.put("deliveryStatus", deliveryStatus);
+        payload.put("actualDeliveryDate", actualDeliveryDate);
+        payload.put("purchaseOrHire", purchaseOrHire);
+        payload.put("customerProcessKey", customerProcessKey);
+        payload.put("bookingReference", vars.getOrDefault("bookingReference", ""));
+        payload.put("selectedTools", vars.getOrDefault("selectedTools", ""));
+        payload.put("quantity", vars.getOrDefault("quantity", 1));
+        payload.put("orderId", vars.getOrDefault("orderId", ""));
+        publishToCatchEvent("packageDelivered", customerProcessKey, payload);
         LOGGER.info("Customer notified | status={} | customerProcessKey={}", deliveryStatus, customerProcessKey);
         client.newCompleteCommand(job.getKey()).send().join();
     }
