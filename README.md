@@ -25,7 +25,7 @@ Coursework repository for **UFCFAF-30-3 Development of Information Systems Proje
 
 ## Case study (in brief)
 
-ProBuild Supplies Ltd is a UK-based medium enterprise that retails and rents building materials and construction tools. The system covers retail sales, tool hire (with external maintenance via FixPro Ltd), warehouse management, the Trade Card loyalty scheme, and interest-free finance through FinTrust UK. Full case study in `ModuleInfo/Case Study_New.docx`.
+ProBuild Supplies Ltd is a UK-based medium enterprise that retails and rents building materials and construction tools. The system covers retail sales, tool hire (with external maintenance via FixPro Ltd), warehouse management, the Trade Card loyalty scheme, and interest-free finance through FinTrust UK.
 
 ---
 
@@ -47,10 +47,11 @@ ProBuild Supplies Ltd is a UK-based medium enterprise that retails and rents bui
 ├── Portfolio/
 │   ├── Documents/
 │   │   ├── ProjectPlan.md
-│   │   └── Testing Report.md                     # test strategy, 22 test cases, 12 defects
-│   └── Socio Technical Model/                    # i* SD and SR models (.txt / piStar format)
+│   │   └── Testing Report.docx                   # test strategy, 22 test cases, 12 defects
+│   └── Socio Technical Model/                    # i* SD and SR models (piStar JSON format)
+│       ├── ProBuildSD.txt                        # Strategic Dependency model
+│       └── SR Model.txt                          # Strategic Rationale model
 ├── Strategic Process Model.bpmn                  # AS-IS strategic BPMN
-├── ModuleInfo/                                   # assignment briefs and case study
 └── README.md
 ```
 
@@ -274,7 +275,7 @@ All service tasks are handled by `ProcessNameWorker.java`:
 | Forms / UIs | `BPMN/*.form` (13 forms) |
 | Java job workers | `Probuild-Project/src/main/java/` |
 | Database (H2 + REST API) | `Probuild-Project/src/main/java/.../model/`, `ApiController.java` |
-| Testing report | `Portfolio/Documents/Testing Report.md` |
+| Testing report | `Portfolio/Documents/Testing Report.docx` |
 | Configuration management | This Git repository |
 
 ---

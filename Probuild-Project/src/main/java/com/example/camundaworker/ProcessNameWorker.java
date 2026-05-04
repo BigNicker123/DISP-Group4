@@ -280,14 +280,20 @@ public class ProcessNameWorker {
     public void sendDeliveryRequirements(final ActivatedJob job, final JobClient client) {
         LOGGER.info("sendDeliveryRequirements triggered");
         Map<String, Object> vars = job.getVariablesAsMap();
-        // preserve the original key if passed through from the hire confirmation flow
         String customerProcessKey = vars.containsKey("customerProcessKey")
                 ? getVar(vars, "customerProcessKey", String.valueOf(job.getProcessInstanceKey()))
                 : String.valueOf(job.getProcessInstanceKey());
+        // Generate a purchase order reference if not set by a prior hire booking or click-and-collect path
+        String orderId = getVar(vars, "orderId", "");
+        if (orderId.isEmpty()) {
+            orderId = "PO-" + System.currentTimeMillis();
+            LOGGER.info("Delivery order reference generated: {}", orderId);
+        }
         vars.put("customerProcessKey", customerProcessKey);
+        vars.put("orderId", orderId);
         publishToStartEvent("toolRequest", vars);
         client.newCompleteCommand(job.getKey())
-                .variables(Map.of("customerProcessKey", customerProcessKey))
+                .variables(Map.of("customerProcessKey", customerProcessKey, "orderId", orderId))
                 .send().join();
     }
 
@@ -448,19 +454,21 @@ public class ProcessNameWorker {
         StringBuilder hireBreakdown = new StringBuilder();
 
         if (selectedTools.isEmpty()) {
-            totalHireCost = hireDuration * 15.00;
-            totalDeposit = 50.00;
-            hireBreakdown.append("Default tool x").append(hireDuration).append(" days");
+            totalHireCost = hireDuration * 15.00 * quantity;
+            totalDeposit = 50.00 * quantity;
+            hireBreakdown.append("Default tool x").append(quantity).append(" x ").append(hireDuration).append(" days");
         } else {
             for (String tool : selectedTools) {
                 Tool t = getToolOrDefault(tool.trim().toLowerCase());
-                double lineCost = t.getHireRatePerDay() * hireDuration;
+                double lineCost = round2(t.getHireRatePerDay() * hireDuration * quantity);
+                double lineDeposit = round2(t.getDepositAmount() * quantity);
                 totalHireCost += lineCost;
-                totalDeposit += t.getDepositAmount();
+                totalDeposit += lineDeposit;
                 hireBreakdown.append(t.getDisplayName())
+                        .append(" x").append(quantity)
                         .append(" @ £").append(t.getHireRatePerDay()).append("/day x ")
-                        .append(hireDuration).append(" days = £").append(round2(lineCost))
-                        .append(" | Deposit: £").append(t.getDepositAmount()).append(" | ");
+                        .append(hireDuration).append(" days = £").append(lineCost)
+                        .append(" | Deposit: £").append(lineDeposit).append(" | ");
             }
         }
 

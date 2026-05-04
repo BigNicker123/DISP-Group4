@@ -1,0 +1,14 @@
+# IDE
+.idea/
+
+# Assignment briefs — university-provided, not student work
+ModuleInfo/
+
+# OS
+.DS_Store
+
+# Old archives
+Probuild-Project.zip
+
+# Claude Code tool settings
+Probuild-Project/.claude/
