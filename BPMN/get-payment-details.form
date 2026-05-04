@@ -1,16 +1,47 @@
 {
+  "executionPlatform": "Camunda Cloud",
+  "executionPlatformVersion": "8.8.0",
+  "exporter": {
+    "name": "Camunda Modeler",
+    "version": "5.45.0"
+  },
+  "schemaVersion": 19,
+  "id": "get-payment-details",
+  "versionTag": "2",
+  "type": "default",
   "components": [
     {
-      "label": "Total Amount (£)",
+      "type": "text",
+      "id": "title_payment",
+      "text": "## Payment Details\nYour order total is shown below. Select your payment method to continue."
+    },
+    {
+      "type": "text",
+      "id": "finance_declined_notice",
+      "text": "⚠️ **Finance application was declined:** {{declineReason}}. Please select an alternative payment method.",
+      "conditional": {
+        "hide": "=declineReason = null or declineReason = \"\""
+      }
+    },
+    {
+      "label": "Original Price (£)",
       "type": "number",
       "id": "totalAmount",
       "key": "totalAmount",
       "validate": {
         "required": true
       },
+      "disabled": true
+    },
+    {
+      "label": "Trade Card Discount Applied (£)",
+      "type": "number",
+      "id": "discountAmount",
+      "key": "discountAmount",
+      "description": "10% loyalty discount for verified Trade Card members.",
       "disabled": true,
-      "layout": {
-        "row": "Row_0hkiatk"
+      "conditional": {
+        "hide": "=discountAmount = 0 or discountAmount = null"
       }
     },
     {
@@ -34,9 +65,14 @@
       "key": "paymentMethod",
       "validate": {
         "required": true
-      },
-      "layout": {
-        "row": "Row_1fzgf3e"
+      }
+    },
+    {
+      "type": "text",
+      "id": "section_card",
+      "text": "#### Card Payment",
+      "conditional": {
+        "hide": "=paymentMethod != \"card\""
       }
     },
     {
@@ -44,11 +80,21 @@
       "type": "textfield",
       "id": "cardNumber",
       "key": "cardNumber",
+      "description": "Enter the last 4 digits of your payment card only.",
       "validate": {
-        "required": false
+        "required": true,
+        "pattern": "^[0-9]{4}$"
       },
-      "layout": {
-        "row": "Row_1lc6qli"
+      "conditional": {
+        "hide": "=paymentMethod != \"card\""
+      }
+    },
+    {
+      "type": "text",
+      "id": "section_finance",
+      "text": "#### Finance Payment Details\nInterest-free finance is available to Trade Card members only. Your trade card number is shown below.",
+      "conditional": {
+        "hide": "=paymentMethod != \"finance\""
       }
     },
     {
@@ -56,21 +102,11 @@
       "type": "textfield",
       "id": "tradeCardNumber",
       "key": "tradeCardNumber",
-      "validate": {
-        "required": false
-      },
-      "layout": {
-        "row": "Row_03ke60p"
+      "description": "Confirmed from your customer information.",
+      "disabled": true,
+      "conditional": {
+        "hide": "=paymentMethod != \"finance\""
       }
-    },
-    {
-      "text": "### Finance Payment Details\nInterest-free finance is available to Trade Card members only. Please confirm your repayment preference below.",
-      "type": "text",
-      "layout": {
-        "row": "Row_1lt45x8",
-        "columns": null
-      },
-      "id": "Field_1lyihxb"
     },
     {
       "label": "Repayment Period",
@@ -85,32 +121,26 @@
         }
       ],
       "type": "radio",
-      "layout": {
-        "row": "Row_1lvdmkd",
-        "columns": null
-      },
       "id": "Field_0d26qit",
-      "key": "repaymentPeriod"
+      "key": "repaymentPeriod",
+      "validate": {
+        "required": true
+      },
+      "conditional": {
+        "hide": "=paymentMethod != \"finance\""
+      }
     },
     {
       "label": "I confirm I am applying for interest-free finance and agree to the repayment schedule",
       "type": "checkbox",
-      "layout": {
-        "row": "Row_098dezl",
-        "columns": null
-      },
       "id": "Field_1l0pduu",
-      "key": "financeConfirmed"
+      "key": "financeConfirmed",
+      "validate": {
+        "required": true
+      },
+      "conditional": {
+        "hide": "=paymentMethod != \"finance\""
+      }
     }
-  ],
-  "executionPlatform": "Camunda Cloud",
-  "executionPlatformVersion": "8.8.0",
-  "exporter": {
-    "name": "Camunda Modeler",
-    "version": "5.45.0"
-  },
-  "schemaVersion": 19,
-  "id": "get-payment-details",
-  "versionTag": "1",
-  "type": "default"
+  ]
 }

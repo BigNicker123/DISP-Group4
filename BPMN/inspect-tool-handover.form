@@ -7,16 +7,28 @@
   },
   "schemaVersion": 16,
   "id": "inspect-tool-handover",
-  "versionTag": "1",
+  "versionTag": "3",
   "type": "default",
   "components": [
+    {
+      "type": "text",
+      "id": "title_inspect",
+      "text": "## Tool Return Inspection\nComplete this checklist when a hired tool is returned. All fields are required before the tool can be returned to stock."
+    },
+    {
+      "type": "text",
+      "id": "section_tool_id",
+      "text": "#### Tool Identification"
+    },
     {
       "type": "textfield",
       "id": "toolId",
       "key": "toolId",
       "label": "Tool ID",
       "validate": {
-        "required": true
+        "required": true,
+        "minLength": 3,
+        "maxLength": 20
       }
     },
     {
@@ -25,8 +37,14 @@
       "key": "toolName",
       "label": "Tool Name",
       "validate": {
-        "required": true
+        "required": true,
+        "minLength": 3
       }
+    },
+    {
+      "type": "text",
+      "id": "section_condition",
+      "text": "#### Condition Assessment"
     },
     {
       "type": "select",
@@ -59,9 +77,14 @@
       "type": "textarea",
       "id": "faultDescription",
       "key": "faultDescription",
-      "label": "Fault Description (if applicable)",
+      "label": "Fault Description",
+      "description": "Describe the fault in detail so FixPro can assess the repair.",
       "validate": {
-        "required": false
+        "required": true,
+        "minLength": 10
+      },
+      "conditional": {
+        "hide": "=toolCondition = \"good\" or toolCondition = \"minor-wear\""
       }
     },
     {
@@ -83,9 +106,27 @@
         },
         {
           "label": "Out-of-Service / Decommission",
-          "value": "out-of-service"
+          "value": "decommission"
         }
       ]
+    },
+    {
+      "type": "number",
+      "id": "repairCost",
+      "key": "repairCost",
+      "label": "Estimated Repair Cost (£)",
+      "validate": {
+        "required": true,
+        "min": 0
+      },
+      "conditional": {
+        "hide": "=serviceType != \"repair\""
+      }
+    },
+    {
+      "type": "text",
+      "id": "section_signoff",
+      "text": "#### Sign-Off"
     },
     {
       "type": "checkbox",
@@ -102,7 +143,8 @@
       "key": "supervisorName",
       "label": "Warehouse Supervisor Name",
       "validate": {
-        "required": true
+        "required": true,
+        "minLength": 2
       }
     }
   ]

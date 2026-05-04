@@ -7,16 +7,28 @@
   },
   "schemaVersion": 16,
   "id": "collect-customer-information",
-  "versionTag": "1",
+  "versionTag": "3",
   "type": "default",
   "components": [
+    {
+      "type": "text",
+      "id": "title_collect",
+      "text": "## Customer Information\nPlease confirm your details below. If you submitted a hire request, your name and email will have been pre-filled — just complete the remaining fields."
+    },
+    {
+      "type": "text",
+      "id": "section_personal",
+      "text": "#### Personal Details"
+    },
     {
       "type": "textfield",
       "id": "customerFirstName",
       "key": "customerFirstName",
       "label": "First Name",
       "validate": {
-        "required": true
+        "required": true,
+        "minLength": 2,
+        "maxLength": 50
       }
     },
     {
@@ -25,7 +37,9 @@
       "key": "customerLastName",
       "label": "Last Name",
       "validate": {
-        "required": true
+        "required": true,
+        "minLength": 2,
+        "maxLength": 50
       }
     },
     {
@@ -34,7 +48,8 @@
       "key": "customerEmail",
       "label": "Email Address",
       "validate": {
-        "required": true
+        "required": true,
+        "pattern": "^[a-zA-Z0-9._%+\\-]+@[a-zA-Z0-9.\\-]+\\.[a-zA-Z]{2,}$"
       }
     },
     {
@@ -42,24 +57,54 @@
       "id": "customerPhone",
       "key": "customerPhone",
       "label": "Phone Number",
+      "description": "UK format — numbers, spaces, hyphens and + only.",
       "validate": {
-        "required": true
+        "required": true,
+        "minLength": 10,
+        "maxLength": 15,
+        "pattern": "^[0-9+\\s\\-()]{10,15}$"
       }
     },
     {
       "type": "textarea",
       "id": "customerAddress",
       "key": "customerAddress",
-      "label": "Delivery Address",
+      "label": "Address",
       "validate": {
-        "required": false
+        "required": true,
+        "minLength": 10
       }
+    },
+    {
+      "type": "text",
+      "id": "section_membership",
+      "text": "#### Trade Card Membership"
     },
     {
       "type": "checkbox",
       "id": "isTradeCardMember",
       "key": "isTradeCardMember",
-      "label": "Trade Card Member?"
+      "label": "I am an existing Trade Card Member"
+    },
+    {
+      "type": "textfield",
+      "id": "tradeCardNumber",
+      "key": "tradeCardNumber",
+      "label": "Trade Card Number",
+      "description": "Enter your ProBuild Trade Card number (e.g. TC-1000000001)",
+      "validate": {
+        "required": true,
+        "pattern": "^TC-[0-9]{10}$"
+      },
+      "conditional": {
+        "hide": "=isTradeCardMember <> true"
+      }
+    },
+    {
+      "type": "checkbox",
+      "id": "registerMembership",
+      "key": "registerMembership",
+      "label": "I would like to register for a Trade Card Membership (£10/year)"
     }
   ]
 }

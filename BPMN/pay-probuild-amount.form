@@ -7,18 +7,23 @@
   },
   "schemaVersion": 16,
   "id": "pay-probuild-amount",
-  "versionTag": "1",
+  "versionTag": "2",
   "type": "default",
   "components": [
+    {
+      "type": "text",
+      "id": "title_pay_probuild",
+      "text": "## Finance Repayment Agreement\nYour credit application has been approved by FinTrust UK. Please review the terms below and confirm your repayment preference."
+    },
     {
       "type": "number",
       "id": "financeAmount",
       "key": "financeAmount",
       "label": "Finance Amount Approved (£)",
+      "disabled": true,
       "validate": {
         "required": true
-      },
-      "disabled": true
+      }
     },
     {
       "type": "select",
@@ -44,6 +49,7 @@
       "id": "bankAccountRef",
       "key": "bankAccountRef",
       "label": "Bank Account Reference",
+      "description": "Enter your sort code and account number (e.g. 12-34-56 / 12345678).",
       "validate": {
         "required": true
       }

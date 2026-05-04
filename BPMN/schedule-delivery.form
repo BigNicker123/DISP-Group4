@@ -7,17 +7,19 @@
   },
   "schemaVersion": 16,
   "id": "schedule-delivery",
-  "versionTag": "1",
+  "versionTag": "2",
   "type": "default",
   "components": [
+    {
+      "type": "text",
+      "id": "title_schedule",
+      "text": "## Schedule Delivery\nAssign a driver and delivery van, then set the scheduled delivery date for this order."
+    },
     {
       "type": "textfield",
       "id": "orderId",
       "key": "orderId",
-      "label": "Order ID",
-      "validate": {
-        "required": true
-      },
+      "label": "Order / Booking Reference",
       "disabled": true
     },
     {
@@ -59,7 +61,8 @@
       "key": "driverName",
       "label": "Driver Name",
       "validate": {
-        "required": true
+        "required": true,
+        "minLength": 2
       }
     },
     {

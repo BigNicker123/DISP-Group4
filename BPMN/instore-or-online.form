@@ -1,33 +1,37 @@
 {
-  "components": [
-    {
-      "label": "In Store or Online?",
-      "values": [
-        {
-          "label": "Online",
-          "value": "Online"
-        },
-        {
-          "label": "InStore",
-          "value": "InStore"
-        }
-      ],
-      "type": "radio",
-      "layout": {
-        "row": "Row_1vfvi9x",
-        "columns": null
-      },
-      "id": "Field_01ce5e2",
-      "key": "inStoreOrOnline"
-    }
-  ],
-  "type": "default",
-  "id": "choose-shopping-method",
   "executionPlatform": "Camunda Cloud",
   "executionPlatformVersion": "8.8.0",
   "exporter": {
     "name": "Camunda Modeler",
     "version": "5.45.0"
   },
-  "schemaVersion": 19
+  "schemaVersion": 19,
+  "id": "choose-shopping-method",
+  "type": "default",
+  "components": [
+    {
+      "type": "text",
+      "id": "title_instore",
+      "text": "## Welcome to ProBuild Supplies\nPlease select how you would like to shop today."
+    },
+    {
+      "label": "How would you like to browse our catalogue?",
+      "values": [
+        {
+          "label": "Online",
+          "value": "Online"
+        },
+        {
+          "label": "In Store",
+          "value": "InStore"
+        }
+      ],
+      "type": "radio",
+      "id": "Field_01ce5e2",
+      "key": "inStoreOrOnline",
+      "validate": {
+        "required": true
+      }
+    }
+  ]
 }

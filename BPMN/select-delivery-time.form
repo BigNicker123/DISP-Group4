@@ -7,9 +7,14 @@
   },
   "schemaVersion": 16,
   "id": "select-delivery-time",
-  "versionTag": "1",
+  "versionTag": "2",
   "type": "default",
   "components": [
+    {
+      "type": "text",
+      "id": "title_delivery_time",
+      "text": "## Select Delivery Time\nChoose your preferred delivery date and time slot, and confirm who will be available to receive the order."
+    },
     {
       "type": "datetime",
       "id": "preferredDeliveryDate",
@@ -44,12 +49,19 @@
       ]
     },
     {
+      "type": "text",
+      "id": "section_contact",
+      "text": "#### Delivery Contact\nIf you will be at home to receive the delivery, your name and phone number will be pre-filled below."
+    },
+    {
       "type": "textfield",
       "id": "deliveryContactName",
       "key": "deliveryContactName",
       "label": "Delivery Contact Name",
+      "description": "Name of the person who will receive the delivery.",
       "validate": {
-        "required": true
+        "required": true,
+        "minLength": 2
       }
     },
     {
@@ -57,8 +69,12 @@
       "id": "deliveryContactPhone",
       "key": "deliveryContactPhone",
       "label": "Delivery Contact Phone",
+      "description": "UK format — numbers, spaces, hyphens and + only.",
       "validate": {
-        "required": true
+        "required": true,
+        "minLength": 10,
+        "maxLength": 15,
+        "pattern": "^[0-9+\\s\\-()]{10,15}$"
       }
     }
   ]

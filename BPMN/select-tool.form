@@ -1,5 +1,19 @@
 {
+  "executionPlatform": "Camunda Cloud",
+  "executionPlatformVersion": "8.8.0",
+  "exporter": {
+    "name": "Camunda Modeler",
+    "version": "5.45.0"
+  },
+  "schemaVersion": 19,
+  "id": "select-tool",
+  "type": "default",
   "components": [
+    {
+      "type": "text",
+      "id": "title_select_tool",
+      "text": "## Select Tools\nChoose whether you would like to purchase or hire, then select the tools you need from our available stock."
+    },
     {
       "label": "Purchase or Hire?",
       "values": [
@@ -13,55 +27,34 @@
         }
       ],
       "type": "radio",
-      "layout": {
-        "row": "Row_1eossrp",
-        "columns": null
-      },
       "id": "Field_1szsm5e",
-      "key": "purchaseOrHire"
+      "key": "purchaseOrHire",
+      "validate": {
+        "required": true
+      }
     },
     {
       "label": "Select Tools / Materials",
-      "values": [
-        {
-          "label": "Timber",
-          "value": "timber"
-        },
-        {
-          "label": "Insulation",
-          "value": "insulation"
-        },
-        {
-          "label": "Plasterboard",
-          "value": "plasterboard"
-        }
-      ],
+      "description": "Only tools currently in stock are shown.",
+      "valuesExpression": "=availableTools",
       "type": "taglist",
-      "layout": {
-        "row": "Row_0vetdde",
-        "columns": null
-      },
       "id": "Field_1f29fl0",
-      "key": "selectedTools"
+      "key": "selectedTools",
+      "validate": {
+        "required": true
+      }
     },
     {
       "label": "Quantity",
       "type": "number",
-      "layout": {
-        "row": "Row_0yqha61",
-        "columns": null
-      },
       "id": "Field_19eipax",
-      "key": "quantity"
+      "key": "quantity",
+      "validate": {
+        "required": true,
+        "min": 1,
+        "max": 100
+      },
+      "decimalDigits": 0
     }
-  ],
-  "type": "default",
-  "id": "select-tool",
-  "executionPlatform": "Camunda Cloud",
-  "executionPlatformVersion": "8.8.0",
-  "exporter": {
-    "name": "Camunda Modeler",
-    "version": "5.45.0"
-  },
-  "schemaVersion": 19
+  ]
 }

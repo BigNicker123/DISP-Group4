@@ -1,5 +1,69 @@
 {
+  "executionPlatform": "Camunda Cloud",
+  "executionPlatformVersion": "8.8.0",
+  "exporter": {
+    "name": "Camunda Modeler",
+    "version": "5.45.0"
+  },
+  "schemaVersion": 19,
+  "id": "duration-of-hire",
+  "type": "default",
   "components": [
+    {
+      "type": "text",
+      "id": "title_duration",
+      "text": "## Hire Duration & Contact Details\nEnter your contact details and select your hire period. These details will be used to confirm your booking."
+    },
+    {
+      "type": "textfield",
+      "id": "customerFirstName",
+      "key": "customerFirstName",
+      "label": "First Name",
+      "validate": {
+        "required": true,
+        "minLength": 2,
+        "maxLength": 50
+      }
+    },
+    {
+      "type": "textfield",
+      "id": "customerLastName",
+      "key": "customerLastName",
+      "label": "Last Name",
+      "validate": {
+        "required": true,
+        "minLength": 2,
+        "maxLength": 50
+      }
+    },
+    {
+      "type": "textfield",
+      "id": "customerEmail",
+      "key": "customerEmail",
+      "label": "Email Address",
+      "validate": {
+        "required": true,
+        "pattern": "^[a-zA-Z0-9._%+\\-]+@[a-zA-Z0-9.\\-]+\\.[a-zA-Z]{2,}$"
+      }
+    },
+    {
+      "type": "textfield",
+      "id": "customerPhone",
+      "key": "customerPhone",
+      "label": "Phone Number",
+      "description": "UK format — numbers, spaces, hyphens and + only.",
+      "validate": {
+        "required": true,
+        "minLength": 10,
+        "maxLength": 15,
+        "pattern": "^[0-9+\\s\\-()]{10,15}$"
+      }
+    },
+    {
+      "type": "text",
+      "id": "section_dates",
+      "text": "#### Hire Period"
+    },
     {
       "subtype": "date",
       "type": "datetime",
@@ -8,10 +72,6 @@
       "label": "Hire Start Date",
       "validate": {
         "required": true
-      },
-      "dateLabel": "Start Date",
-      "layout": {
-        "row": "Row_1iwodj3"
       }
     },
     {
@@ -22,20 +82,7 @@
       "label": "Hire End Date",
       "validate": {
         "required": true
-      },
-      "dateLabel": "End Date",
-      "layout": {
-        "row": "Row_09q7ix4"
       }
     }
-  ],
-  "executionPlatform": "Camunda Cloud",
-  "executionPlatformVersion": "8.8.0",
-  "exporter": {
-    "name": "Camunda Modeler",
-    "version": "5.45.0"
-  },
-  "schemaVersion": 19,
-  "id": "duration-of-hire",
-  "type": "default"
+  ]
 }

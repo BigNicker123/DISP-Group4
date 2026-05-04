@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="Probuild-Project">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/Probuild-Project.zip!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

@@ -7,17 +7,19 @@
   },
   "schemaVersion": 16,
   "id": "update-system-delivered",
-  "versionTag": "1",
+  "versionTag": "2",
   "type": "default",
   "components": [
+    {
+      "type": "text",
+      "id": "title_delivered",
+      "text": "## Update Delivery Status\nConfirm the outcome of the delivery and update the system record."
+    },
     {
       "type": "textfield",
       "id": "orderId",
       "key": "orderId",
-      "label": "Order ID",
-      "validate": {
-        "required": true
-      },
+      "label": "Order / Booking Reference",
       "disabled": true
     },
     {

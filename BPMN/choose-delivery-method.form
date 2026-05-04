@@ -7,14 +7,19 @@
   },
   "schemaVersion": 16,
   "id": "choose-delivery-method",
-  "versionTag": "1",
+  "versionTag": "3",
   "type": "default",
   "components": [
+    {
+      "type": "text",
+      "id": "title_delivery",
+      "text": "## Delivery Method\nChoose how you would like to receive your order."
+    },
     {
       "type": "radio",
       "id": "deliveryMethod",
       "key": "deliveryMethod",
-      "label": "Choose Delivery Method",
+      "label": "Delivery Method",
       "validate": {
         "required": true
       },
@@ -33,9 +38,14 @@
       "type": "textarea",
       "id": "deliveryAddress",
       "key": "deliveryAddress",
-      "label": "Delivery Address (if Home Delivery)",
+      "label": "Delivery Address",
+      "description": "Enter the full address where the order should be delivered.",
       "validate": {
-        "required": false
+        "required": true,
+        "minLength": 10
+      },
+      "conditional": {
+        "hide": "=deliveryMethod != \"delivery\""
       }
     },
     {
@@ -43,8 +53,12 @@
       "id": "deliveryNotes",
       "key": "deliveryNotes",
       "label": "Delivery Instructions / Notes",
+      "description": "e.g. leave at rear gate, call on arrival.",
       "validate": {
         "required": false
+      },
+      "conditional": {
+        "hide": "=deliveryMethod != \"delivery\""
       }
     }
   ]
