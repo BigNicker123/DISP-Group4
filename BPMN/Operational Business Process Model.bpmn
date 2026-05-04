@@ -391,10 +391,10 @@
     <bpmn:endEvent id="Event_0tgwpop">
       <bpmn:incoming>Flow_09qjfis</bpmn:incoming>
     </bpmn:endEvent>
-    <bpmn:intermediateCatchEvent id="Event_00d72hu" name="Tool Unavailable">
+    <bpmn:startEvent id="Event_00d72hu" name="Tool Unavailable">
       <bpmn:outgoing>Flow_0dyjera</bpmn:outgoing>
       <bpmn:messageEventDefinition id="MessageEventDefinition_1r75ijv" messageRef="Message_1cjupkd" />
-    </bpmn:intermediateCatchEvent>
+    </bpmn:startEvent>
     <bpmn:endEvent id="Event_0wc8bb8_end">
       <bpmn:incoming>Flow_0wc8bb8_end</bpmn:incoming>
     </bpmn:endEvent>

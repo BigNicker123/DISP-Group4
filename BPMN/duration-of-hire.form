@@ -15,6 +15,14 @@
       "text": "## Hire Duration & Contact Details\nEnter your contact details and select your hire period. These details will be used to confirm your booking."
     },
     {
+      "type": "text",
+      "id": "unavailable_warning",
+      "text": "⚠️ **Sorry, the tool(s) you selected are not available in the quantity requested.** Please adjust your selection, quantity, or dates and try again.",
+      "conditional": {
+        "hide": "=not(toolAvailable = false)"
+      }
+    },
+    {
       "type": "textfield",
       "id": "customerFirstName",
       "key": "customerFirstName",

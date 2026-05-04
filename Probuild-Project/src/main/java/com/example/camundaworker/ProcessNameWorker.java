@@ -553,8 +553,13 @@ public class ProcessNameWorker {
         LOGGER.info("sendToolUnavailable triggered");
         Map<String, Object> vars = job.getVariablesAsMap();
         String customerProcessKey = getVar(vars, "customerProcessKey", "NOT_FOUND");
-        publishToCatchEvent("toolUnavailable", customerProcessKey, Map.of("toolAvailable", false));
-        LOGGER.info("Tool unavailable sent | customerProcessKey={}", customerProcessKey);
+        Map<String, Object> payload = new HashMap<>();
+        payload.put("toolAvailable", false);
+        payload.put("purchaseOrHire", vars.getOrDefault("purchaseOrHire", "hire"));
+        payload.put("selectedTools", vars.getOrDefault("selectedTools", ""));
+        payload.put("customerProcessKey", customerProcessKey);
+        publishToStartEvent("toolUnavailable", payload);
+        LOGGER.info("Tool unavailable notification sent — new Customer instance started | tools={}", vars.getOrDefault("selectedTools", ""));
         client.newCompleteCommand(job.getKey()).send().join();
     }
 
