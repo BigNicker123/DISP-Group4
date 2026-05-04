@@ -1,18 +1,24 @@
 {
-  "executionPlatform": "Camunda Cloud",
-  "executionPlatformVersion": "8.8.0",
-  "exporter": {
-    "name": "Camunda Modeler",
-    "version": "5.45.0"
-  },
-  "schemaVersion": 19,
-  "id": "select-tool",
-  "type": "default",
   "components": [
     {
+      "text": "## Select Tools\nChoose whether you would like to purchase or hire, then select the tools you need from our available stock.",
       "type": "text",
       "id": "title_select_tool",
-      "text": "## Select Tools\nChoose whether you would like to purchase or hire, then select the tools you need from our available stock."
+      "layout": {
+        "row": "Row_0nob5n7"
+      }
+    },
+    {
+      "text": "⚠️ **Sorry, the tool(s) you selected are not available in the quantity requested.** Please adjust your selection, quantity, or dates and try again.",
+      "type": "text",
+      "layout": {
+        "row": "Row_0bsunlt",
+        "columns": null
+      },
+      "id": "Field_0te7zsr",
+      "conditional": {
+        "hide": "=not(toolAvailable = false)"
+      }
     },
     {
       "label": "Purchase or Hire?",
@@ -31,6 +37,9 @@
       "key": "purchaseOrHire",
       "validate": {
         "required": true
+      },
+      "layout": {
+        "row": "Row_0aue1kp"
       }
     },
     {
@@ -42,6 +51,9 @@
       "key": "selectedTools",
       "validate": {
         "required": true
+      },
+      "layout": {
+        "row": "Row_1wf6um5"
       }
     },
     {
@@ -54,7 +66,19 @@
         "min": 1,
         "max": 100
       },
-      "decimalDigits": 0
+      "decimalDigits": 0,
+      "layout": {
+        "row": "Row_14jv847"
+      }
     }
-  ]
+  ],
+  "executionPlatform": "Camunda Cloud",
+  "executionPlatformVersion": "8.8.0",
+  "exporter": {
+    "name": "Camunda Modeler",
+    "version": "5.45.0"
+  },
+  "schemaVersion": 19,
+  "id": "select-tool",
+  "type": "default"
 }

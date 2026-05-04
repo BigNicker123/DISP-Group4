@@ -1,76 +1,77 @@
 {
-  "executionPlatform": "Camunda Cloud",
-  "executionPlatformVersion": "8.8.0",
-  "exporter": {
-    "name": "Camunda Modeler",
-    "version": "5.45.0"
-  },
-  "schemaVersion": 19,
-  "id": "duration-of-hire",
-  "type": "default",
   "components": [
     {
+      "text": "## Hire Duration & Contact Details\nEnter your contact details and select your hire period. These details will be used to confirm your booking.",
       "type": "text",
       "id": "title_duration",
-      "text": "## Hire Duration & Contact Details\nEnter your contact details and select your hire period. These details will be used to confirm your booking."
-    },
-    {
-      "type": "text",
-      "id": "unavailable_warning",
-      "text": "⚠️ **Sorry, the tool(s) you selected are not available in the quantity requested.** Please adjust your selection, quantity, or dates and try again.",
-      "conditional": {
-        "hide": "=not(toolAvailable = false)"
+      "layout": {
+        "row": "Row_063c61b"
       }
     },
     {
+      "label": "First Name",
       "type": "textfield",
       "id": "customerFirstName",
       "key": "customerFirstName",
-      "label": "First Name",
       "validate": {
         "required": true,
         "minLength": 2,
         "maxLength": 50
+      },
+      "layout": {
+        "row": "Row_1vpbrf8"
       }
     },
     {
+      "label": "Last Name",
       "type": "textfield",
       "id": "customerLastName",
       "key": "customerLastName",
-      "label": "Last Name",
       "validate": {
         "required": true,
         "minLength": 2,
         "maxLength": 50
+      },
+      "layout": {
+        "row": "Row_17i11yt"
       }
     },
     {
+      "label": "Email Address",
       "type": "textfield",
       "id": "customerEmail",
       "key": "customerEmail",
-      "label": "Email Address",
       "validate": {
         "required": true,
         "pattern": "^[a-zA-Z0-9._%+\\-]+@[a-zA-Z0-9.\\-]+\\.[a-zA-Z]{2,}$"
+      },
+      "layout": {
+        "row": "Row_1064r2v"
       }
     },
     {
+      "label": "Phone Number",
       "type": "textfield",
       "id": "customerPhone",
       "key": "customerPhone",
-      "label": "Phone Number",
       "description": "UK format — numbers, spaces, hyphens and + only.",
       "validate": {
         "required": true,
         "minLength": 10,
         "maxLength": 15,
         "pattern": "^[0-9+\\s\\-()]{10,15}$"
+      },
+      "layout": {
+        "row": "Row_1bou8rt"
       }
     },
     {
+      "text": "#### Hire Period",
       "type": "text",
       "id": "section_dates",
-      "text": "#### Hire Period"
+      "layout": {
+        "row": "Row_13ivxbf"
+      }
     },
     {
       "subtype": "date",
@@ -80,6 +81,9 @@
       "label": "Hire Start Date",
       "validate": {
         "required": true
+      },
+      "layout": {
+        "row": "Row_1kbxp5i"
       }
     },
     {
@@ -90,7 +94,19 @@
       "label": "Hire End Date",
       "validate": {
         "required": true
+      },
+      "layout": {
+        "row": "Row_1blkhxk"
       }
     }
-  ]
+  ],
+  "executionPlatform": "Camunda Cloud",
+  "executionPlatformVersion": "8.8.0",
+  "exporter": {
+    "name": "Camunda Modeler",
+    "version": "5.45.0"
+  },
+  "schemaVersion": 19,
+  "id": "duration-of-hire",
+  "type": "default"
 }
