@@ -35,6 +35,14 @@
       ]
     },
     {
+      "type": "text",
+      "id": "section_delivery_address",
+      "text": "#### Delivery Address",
+      "conditional": {
+        "hide": "=deliveryMethod != \"delivery\""
+      }
+    },
+    {
       "type": "textarea",
       "id": "deliveryAddress",
       "key": "deliveryAddress",

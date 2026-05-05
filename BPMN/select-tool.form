@@ -43,6 +43,11 @@
       }
     },
     {
+      "text": "#### Tool Selection",
+      "type": "text",
+      "id": "section_tool_selection"
+    },
+    {
       "label": "Select Tools / Materials",
       "description": "Only tools currently in stock are shown.",
       "valuesExpression": "=availableTools",

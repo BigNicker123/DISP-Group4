@@ -9,6 +9,11 @@
       }
     },
     {
+      "text": "#### Contact Details",
+      "type": "text",
+      "id": "section_contact"
+    },
+    {
       "label": "First Name",
       "type": "textfield",
       "id": "customerFirstName",

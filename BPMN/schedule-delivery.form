@@ -16,11 +16,21 @@
       "text": "## Schedule Delivery\nAssign a driver and delivery van, then set the scheduled delivery date for this order."
     },
     {
+      "type": "text",
+      "id": "section_order_details",
+      "text": "#### Order Details"
+    },
+    {
       "type": "textfield",
       "id": "orderId",
       "key": "orderId",
       "label": "Order / Booking Reference",
       "disabled": true
+    },
+    {
+      "type": "text",
+      "id": "section_delivery_schedule",
+      "text": "#### Delivery Schedule"
     },
     {
       "type": "datetime",

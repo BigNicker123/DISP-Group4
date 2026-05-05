@@ -16,6 +16,11 @@
       "text": "## Select Delivery Time\nChoose your preferred delivery date and time slot, and confirm who will be available to receive the order."
     },
     {
+      "type": "text",
+      "id": "section_delivery_prefs",
+      "text": "#### Delivery Preferences"
+    },
+    {
       "type": "datetime",
       "id": "preferredDeliveryDate",
       "key": "preferredDeliveryDate",

@@ -302,11 +302,14 @@ public class ProcessNameWorker {
         LOGGER.info("sendReturn triggered");
         Map<String, Object> vars = job.getVariablesAsMap();
         String customerProcessKey = getVar(vars, "customerProcessKey", "NOT_FOUND");
-        publishToCatchEvent("toolReturn", customerProcessKey, Map.of(
-                "toolReturned", true,
-                "customerProcessKey", customerProcessKey
-        ));
-        LOGGER.info("Tool return sent | customerProcessKey={}", customerProcessKey);
+        Map<String, Object> payload = new HashMap<>();
+        payload.put("toolReturned", true);
+        payload.put("customerProcessKey", customerProcessKey);
+        payload.put("bookingReference", getVar(vars, "bookingReference", ""));
+        payload.put("selectedTools", getVar(vars, "selectedTools", ""));
+        payload.put("quantity", getVar(vars, "quantity", "1"));
+        publishToCatchEvent("toolReturn", customerProcessKey, payload);
+        LOGGER.info("Tool return sent | customerProcessKey={} | bookingReference={}", customerProcessKey, getVar(vars, "bookingReference", ""));
         client.newCompleteCommand(job.getKey()).send().join();
     }
 
@@ -380,12 +383,12 @@ public class ProcessNameWorker {
         boolean approved = Boolean.parseBoolean(getVar(vars, "creditApproved", "false"));
         String customerProcessKey = getVar(vars, "customerProcessKey", "NOT_FOUND");
 
-        String purchaseOrHire = getVar(vars, "purchaseOrHire", "purchase");
-
-        Map<String, Object> payload = new HashMap<>();
+        Map<String, Object> payload = new HashMap<>(vars);
         payload.put("creditApproved", approved);
-        payload.put("paymentSuccessful", approved); // set paymentSuccessful based on credit decision
-        payload.put("purchaseOrHire", purchaseOrHire);
+        payload.put("paymentSuccessful", approved);
+        if (!approved) {
+            payload.put("declineReason", getVar(vars, "declineReason", "Finance application was not approved."));
+        }
 
         publishToCatchEvent("financeDecision", customerProcessKey, payload);
         LOGGER.info("Finance decision sent | approved={} | customerProcessKey={}", approved, customerProcessKey);

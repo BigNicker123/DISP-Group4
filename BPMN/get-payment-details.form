@@ -24,6 +24,11 @@
       }
     },
     {
+      "type": "text",
+      "id": "section_order_summary",
+      "text": "#### Order Summary"
+    },
+    {
       "label": "Original Price (£)",
       "type": "number",
       "id": "originalAmount",
@@ -50,6 +55,11 @@
         "required": true
       },
       "disabled": true
+    },
+    {
+      "type": "text",
+      "id": "section_payment_method",
+      "text": "#### Payment Method"
     },
     {
       "label": "Payment Method",

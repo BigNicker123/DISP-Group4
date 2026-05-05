@@ -16,11 +16,21 @@
       "text": "## Update Delivery Status\nConfirm the outcome of the delivery and update the system record."
     },
     {
+      "type": "text",
+      "id": "section_order_details",
+      "text": "#### Order Details"
+    },
+    {
       "type": "textfield",
       "id": "orderId",
       "key": "orderId",
       "label": "Order / Booking Reference",
       "disabled": true
+    },
+    {
+      "type": "text",
+      "id": "section_delivery_outcome",
+      "text": "#### Delivery Outcome"
     },
     {
       "type": "datetime",

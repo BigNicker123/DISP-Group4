@@ -16,6 +16,11 @@
       "text": "## Finance Repayment Agreement\nYour credit application has been approved by FinTrust UK. Please review the terms below and confirm your repayment preference."
     },
     {
+      "type": "text",
+      "id": "section_finance_details",
+      "text": "#### Finance Details"
+    },
+    {
       "type": "number",
       "id": "financeAmount",
       "key": "financeAmount",
@@ -43,6 +48,11 @@
           "value": "12"
         }
       ]
+    },
+    {
+      "type": "text",
+      "id": "section_payment_confirm",
+      "text": "#### Payment Confirmation"
     },
     {
       "type": "textfield",
