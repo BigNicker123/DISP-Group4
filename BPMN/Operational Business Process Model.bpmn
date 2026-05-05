@@ -883,7 +883,7 @@
     </bpmn:inclusiveGateway>
     <bpmn:exclusiveGateway id="Gateway_11jxzfl">
       <bpmn:incoming>Flow_0xs59pt</bpmn:incoming>
-      <bpmn:incoming>Flow_06mjtae</bpmn:incoming>
+      <bpmn:incoming>Flow_pat_pass</bpmn:incoming>
       <bpmn:outgoing>Flow_1ila5wr</bpmn:outgoing>
     </bpmn:exclusiveGateway>
     <bpmn:manualTask id="Activity_133mg6v" name="Store item in &#39;return&#39; area">
@@ -949,13 +949,48 @@
     <bpmn:sequenceFlow id="Flow_1ila5wr" sourceRef="Gateway_11jxzfl" targetRef="Gateway_0mbwm9r" />
     <bpmn:sequenceFlow id="Flow_0r6l44h" sourceRef="Gateway_0mbwm9r" targetRef="Activity_0s0vbpo" />
     <bpmn:sequenceFlow id="Flow_0xs59pt" sourceRef="Activity_133mg6v" targetRef="Gateway_11jxzfl" />
-    <bpmn:sequenceFlow id="Flow_06mjtae" sourceRef="Activity_1co0r67" targetRef="Gateway_11jxzfl" />
+    <bpmn:sequenceFlow id="Flow_06mjtae" sourceRef="Activity_1co0r67" targetRef="Gateway_patcheck" />
     <bpmn:sequenceFlow id="Flow_1us8fz0" sourceRef="Event_1ww2uh5" targetRef="Activity_133mg6v" />
     <bpmn:sequenceFlow id="Flow_0p7iacb" sourceRef="Activity_1qvx78y" targetRef="Activity_1co0r67" />
     <bpmn:sequenceFlow id="Flow_0vn6sai" sourceRef="Event_06kjmk4" targetRef="Activity_1qvx78y" />
     <bpmn:sequenceFlow id="Flow_1ermprg" sourceRef="Activity_0s0vbpo" targetRef="Activity_0txxuyh" />
+
+
+
     <bpmn:sequenceFlow id="Flow_0txxuyh_end" sourceRef="Activity_0txxuyh" targetRef="Event_0txxuyh_end" />
-  </bpmn:process>
+
+<bpmn:exclusiveGateway id="Gateway_patcheck" name="PAT test passed?">
+  <bpmn:incoming>Flow_06mjtae</bpmn:incoming>
+  <bpmn:outgoing>Flow_pat_pass</bpmn:outgoing>
+  <bpmn:outgoing>Flow_pat_fail</bpmn:outgoing>
+</bpmn:exclusiveGateway>
+
+<bpmn:sequenceFlow id="Flow_pat_pass" name="Yes" sourceRef="Gateway_patcheck" targetRef="Gateway_11jxzfl">
+  <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">=patTestPassed = true</bpmn:conditionExpression>
+</bpmn:sequenceFlow>
+
+<bpmn:sequenceFlow id="Flow_pat_fail" name="No" sourceRef="Gateway_patcheck" targetRef="Activity_notify_pat_fail">
+  <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">=patTestPassed = false</bpmn:conditionExpression>
+</bpmn:sequenceFlow>
+
+<bpmn:sendTask id="Activity_notify_pat_fail" name="Notify ProBuild of safety failure">
+  <bpmn:extensionElements>
+    <zeebe:taskDefinition type="notifyPatFailure" />
+  </bpmn:extensionElements>
+  <bpmn:incoming>Flow_pat_fail</bpmn:incoming>
+  <bpmn:outgoing>Flow_pat_fail_end</bpmn:outgoing>
+</bpmn:sendTask>
+
+<bpmn:endEvent id="Event_pat_fail_end" name="Tool fails safety compliance">
+  <bpmn:incoming>Flow_pat_fail_end</bpmn:incoming>
+  <bpmn:errorEventDefinition />
+</bpmn:endEvent>
+
+<bpmn:sequenceFlow id="Flow_pat_fail_end" sourceRef="Activity_notify_pat_fail" targetRef="Event_pat_fail_end" />
+</bpmn:process>
+
+
+  
   <bpmn:message id="Message_1cjupkd" name="toolUnavailable">
     <bpmn:extensionElements>
       <zeebe:subscription correlationKey="=customerProcessKey" />
