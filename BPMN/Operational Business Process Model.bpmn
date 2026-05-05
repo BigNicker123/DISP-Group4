@@ -2080,8 +2080,50 @@
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="Flow_06mjtae_di" bpmnElement="Flow_06mjtae">
         <di:waypoint x="5460" y="2140" />
-        <di:waypoint x="5460" y="2255" />
+        <di:waypoint x="5620" y="2140" />
       </bpmndi:BPMNEdge>
+
+      <bpmndi:BPMNShape id="Gateway_patcheck_di" bpmnElement="Gateway_patcheck" isMarkerVisible="true">
+        <dc:Bounds x="5620" y="2115" width="50" height="50" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="5608" y="2085" width="74" height="27" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+
+      <bpmndi:BPMNEdge id="Flow_pat_pass_di" bpmnElement="Flow_pat_pass">
+        <di:waypoint x="5645" y="2115" />
+        <di:waypoint x="5645" y="2080" />
+        <di:waypoint x="5460" y="2080" />
+        <di:waypoint x="5460" y="2255" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="5540" y="2062" width="18" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+
+      <bpmndi:BPMNEdge id="Flow_pat_fail_di" bpmnElement="Flow_pat_fail">
+        <di:waypoint x="5670" y="2140" />
+        <di:waypoint x="5760" y="2140" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="5698" y="2122" width="15" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+
+      <bpmndi:BPMNShape id="Activity_notify_pat_fail_di" bpmnElement="Activity_notify_pat_fail">
+        <dc:Bounds x="5760" y="2100" width="100" height="80" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+
+      <bpmndi:BPMNEdge id="Flow_pat_fail_end_di" bpmnElement="Flow_pat_fail_end">
+        <di:waypoint x="5860" y="2140" />
+        <di:waypoint x="5930" y="2140" />
+      </bpmndi:BPMNEdge>
+
+      <bpmndi:BPMNShape id="Event_pat_fail_end_di" bpmnElement="Event_pat_fail_end">
+        <dc:Bounds x="5930" y="2122" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="5908" y="2165" width="81" height="27" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
       <bpmndi:BPMNEdge id="Flow_1us8fz0_di" bpmnElement="Flow_1us8fz0">
         <di:waypoint x="5120" y="2138" />
         <di:waypoint x="5120" y="2180" />
