@@ -1,0 +1,123 @@
+{
+  "executionPlatform": "Camunda Cloud",
+  "executionPlatformVersion": "8.8.0",
+  "exporter": {
+    "name": "Camunda Modeler",
+    "version": "5.45.0"
+  },
+  "schemaVersion": 19,
+  "id": "pat-testing",
+  "type": "default",
+  "components": [
+    {
+      "type": "text",
+      "id": "title_pat",
+      "text": "## FixPro Ltd — PAT Testing & Service Label\nComplete the Portable Appliance Test below. A service label must be affixed to all tools that pass."
+    },
+    {
+      "type": "text",
+      "id": "section_tool_info",
+      "text": "#### Tool Information"
+    },
+    {
+      "label": "Booking Reference",
+      "type": "textfield",
+      "id": "bookingRef_display",
+      "key": "bookingReference",
+      "disabled": true
+    },
+    {
+      "label": "Tool(s)",
+      "type": "textfield",
+      "id": "tools_display",
+      "key": "selectedTools",
+      "disabled": true
+    },
+    {
+      "label": "Service Type Performed",
+      "type": "textfield",
+      "id": "serviceType_display",
+      "key": "serviceType",
+      "disabled": true
+    },
+    {
+      "type": "text",
+      "id": "section_pat",
+      "text": "#### PAT Test Result"
+    },
+    {
+      "label": "PAT Test Result",
+      "type": "radio",
+      "id": "patTestPassed",
+      "key": "patTestPassed",
+      "values": [
+        { "label": "Pass — tool is electrically safe and ready for hire", "value": true },
+        { "label": "Fail — safety issue detected", "value": false }
+      ],
+      "validate": {
+        "required": true
+      }
+    },
+    {
+      "label": "Technician ID",
+      "type": "textfield",
+      "id": "patTechnicianId",
+      "key": "patTechnicianId",
+      "description": "Enter your FixPro technician ID.",
+      "validate": {
+        "required": true,
+        "minLength": 2
+      }
+    },
+    {
+      "label": "Test Date",
+      "subtype": "date",
+      "type": "datetime",
+      "id": "patTestDate",
+      "key": "patTestDate",
+      "validate": {
+        "required": true
+      }
+    },
+    {
+      "label": "Next Service Due Date",
+      "subtype": "date",
+      "type": "datetime",
+      "id": "nextServiceDate",
+      "key": "nextServiceDate",
+      "description": "Recommended date for the next service or PAT re-test.",
+      "validate": {
+        "required": true
+      },
+      "conditional": {
+        "hide": "=patTestPassed = false or patTestPassed = null"
+      }
+    },
+    {
+      "label": "Service label affixed (date, technician ID, and next service date)",
+      "type": "checkbox",
+      "id": "serviceLabelApplied",
+      "key": "serviceLabelApplied",
+      "validate": {
+        "required": true
+      },
+      "conditional": {
+        "hide": "=patTestPassed = false or patTestPassed = null"
+      }
+    },
+    {
+      "label": "Failure Details",
+      "type": "textarea",
+      "id": "patFailureNotes",
+      "key": "patFailureNotes",
+      "description": "Describe the safety fault or issue found during PAT testing.",
+      "validate": {
+        "required": true,
+        "minLength": 10
+      },
+      "conditional": {
+        "hide": "=patTestPassed = true or patTestPassed = null"
+      }
+    }
+  ]
+}

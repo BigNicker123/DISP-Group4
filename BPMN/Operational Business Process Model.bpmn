@@ -907,8 +907,9 @@
       <bpmn:outgoing>Flow_1us8fz0</bpmn:outgoing>
       <bpmn:messageEventDefinition id="MessageEventDefinition_11nchyb" messageRef="Message_15qoq42" />
     </bpmn:startEvent>
-    <bpmn:userTask id="Activity_1co0r67" name="Testing and Put service lab">
+    <bpmn:userTask id="Activity_1co0r67" name="PAT Testing and Service Labelling">
       <bpmn:extensionElements>
+        <zeebe:formDefinition formId="pat-testing" bindingType="deployment" />
         <zeebe:userTask />
         <zeebe:assignmentDefinition assignee="demo" />
       </bpmn:extensionElements>
@@ -977,6 +978,9 @@
       <bpmn:incoming>Flow_1yq4a1h</bpmn:incoming>
     </bpmn:endEvent>
     <bpmn:serviceTask id="Activity_0mn1i4y" name="Notify ProBuild of safety failure">
+      <bpmn:extensionElements>
+        <zeebe:taskDefinition type="notifyProBuildSafetyFailure" />
+      </bpmn:extensionElements>
       <bpmn:incoming>Flow_1fxmaqc</bpmn:incoming>
       <bpmn:outgoing>Flow_11rrmyn</bpmn:outgoing>
       <bpmn:outgoing>Flow_1yq4a1h</bpmn:outgoing>

@@ -685,4 +685,19 @@ public class ProcessNameWorker {
         LOGGER.info("Tools returned to ProBuild | probuildProcessKey={}", probuildProcessKey);
         client.newCompleteCommand(job.getKey()).send().join();
     }
+
+    @JobWorker(type = "notifyProBuildSafetyFailure")
+    public void notifyProBuildSafetyFailure(final ActivatedJob job, final JobClient client) {
+        LOGGER.info("notifyProBuildSafetyFailure triggered");
+        Map<String, Object> vars = job.getVariablesAsMap();
+        String bookingRef = getVar(vars, "bookingReference", "N/A");
+        String tools = getVar(vars, "selectedTools", "N/A");
+        String technicianId = getVar(vars, "patTechnicianId", "N/A");
+        String failureNotes = getVar(vars, "patFailureNotes", "No details provided");
+        LOGGER.warn("PAT FAILURE — Booking: {} | Tools: {} | Technician: {} | Notes: {}",
+                bookingRef, tools, technicianId, failureNotes);
+        Map<String, Object> payload = new HashMap<>(vars);
+        payload.put("patFailureNotified", true);
+        client.newCompleteCommand(job.getKey()).variables(payload).send().join();
+    }
 }
