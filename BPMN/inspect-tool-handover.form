@@ -22,24 +22,24 @@
     },
     {
       "type": "textfield",
-      "id": "toolId",
-      "key": "toolId",
-      "label": "Tool ID",
-      "validate": {
-        "required": true,
-        "minLength": 3,
-        "maxLength": 20
-      }
+      "id": "bookingRef_display",
+      "key": "bookingReference",
+      "label": "Booking Reference",
+      "disabled": true
     },
     {
       "type": "textfield",
-      "id": "toolName",
-      "key": "toolName",
-      "label": "Tool Name",
-      "validate": {
-        "required": true,
-        "minLength": 3
-      }
+      "id": "selectedTools_display",
+      "key": "selectedTools",
+      "label": "Tool(s) Hired",
+      "disabled": true
+    },
+    {
+      "type": "number",
+      "id": "quantity_display",
+      "key": "quantity",
+      "label": "Quantity",
+      "disabled": true
     },
     {
       "type": "text",
